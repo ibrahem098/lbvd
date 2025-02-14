@@ -60,14 +60,14 @@ let images = [
 ];
 
 let content = [...bigText, ...smallText, ...images];
-
-
 content.forEach((item, index) => {
     item.id = index + 1;
     item.order = Math.floor(Math.random() * 10000);
 });
-
 let orderedContent = [...content].sort((a, b) => a.order - b.order);
+
+let contentContianerElemnt = document.querySelector(".contentContianer");
+
 function makeContentHTML() {
     let contentHTML = "";
     orderedContent.forEach(item => {
@@ -85,11 +85,14 @@ function makeContentHTML() {
             })
             itemHTML = `<div class="item" id="${item.id}"><div class="smallTextItem">${textLines}</div></div>`
         }
-
-        contentHTML += dividerElemntHTML
         contentHTML += itemHTML
+        contentHTML += dividerElemntHTML
     })
 
-    document.body.innerHTML = contentHTML
+    contentContianerElemnt.innerHTML = contentHTML
 }
+// setInterval(() => {
+//     makeContentHTML()
+// }, 1000)
+
 makeContentHTML()

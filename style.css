@@ -1,5 +1,53 @@
-body {
+* {
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+}
+
+:root {
+    --LineHeight: 6rem;
+}
+
+.contentContianer {
     display: flex;
     flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
 
+.divider {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 6rem;
+    font-weight: bold;
+    max-height: var(--LineHeight);
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    margin-bottom: 10px;
+    max-height: var(--LineHeight);
+}
+
+.imageItem {
+    height: var(--LineHeight);
+}
+
+.smallTextItem {
+    display: flex;
+    flex-direction: column;
+}
+
+.smallTextItem span {
+    font-size: calc(var(--LineHeight)/2);
+}
+
+.bigTextItem {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: var(--LineHeight);
+    height: 100%;
+    letter-spacing: -2px;
+    font-weight: bold;
+    text-align: center;
 }
