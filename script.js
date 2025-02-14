@@ -64,8 +64,32 @@ let content = [...bigText, ...smallText, ...images];
 
 content.forEach((item, index) => {
     item.id = index + 1;
-    item.order = Math.floor(Math.random() * 1000);
+    item.order = Math.floor(Math.random() * 10000);
 });
 
 let orderedContent = [...content].sort((a, b) => a.order - b.order);
-console.log(orderedContent);
+function makeContentHTML() {
+    let contentHTML = "";
+    orderedContent.forEach(item => {
+        let dividerElemntHTML = `<span class="divider">/</span>`
+        let itemHTML = ``;
+        if (item.type === "img") {
+            itemHTML = `<div class="item" id="${item.id}"><img src="${item.src}" class="imageItem"></div>`
+        } else if (item.type === "bigText") {
+            itemHTML = `<div class="item" id="${item.id}"><span class="bigTextItem">${item.text}</span></div>`
+        } else {
+            let textLines = "";
+            item.text.forEach(textSpan => {
+                let textLine = `<span>${textSpan}</span>`
+                textLines += textLine
+            })
+            itemHTML = `<div class="item" id="${item.id}"><div class="smallTextItem">${textLines}</div></div>`
+        }
+
+        contentHTML += dividerElemntHTML
+        contentHTML += itemHTML
+    })
+
+    document.body.innerHTML = contentHTML
+}
+makeContentHTML()
